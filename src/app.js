@@ -4,16 +4,22 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
-const uuid = require('uuid/v4');
-
+const foldersRouter=require('./folders/folders-router');
+const validateBearerToken=require('./validate-bearer-token'); 
+const NotesRouter = require('./notes/notes-router');
 const app = express();
 
 const morganOption = NODE_ENV === 'production';
 
-app.use(morgan(morganOption));
+app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
+  skip: () => NODE_ENV === 'development'
+}));
 app.use(helmet());
 app.use(cors());
-app.use(express.json());
+//app.use(validateBearerToken);
+app.use('/api/folders',foldersRouter);
+app.use('/api/notes',NotesRouter);
+
 
 app.get('/', (req, res) => {
   console.log('Hello World');
