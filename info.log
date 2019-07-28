@@ -384,3 +384,13 @@
 {"message":"note_name is required","level":"error"}
 {"message":"note with id 1 has been created","level":"info"}
 {"message":"note with id 1 has been created","level":"info"}
+{"message":"folder_name is required","level":"error"}
+{"message":"folder_name is required","level":"error"}
+{"message":"Folder with id 1 has been created","level":"info"}
+{"message":"note with id 1 has been created","level":"info"}
+{"message":"note with id 1deleted","level":"info"}
+{"message":"Folder with id 2 has been created","level":"info"}
+{"message":"note with id 2 has been created","level":"info"}
+{"message":"note_name is required","level":"error"}
+{"message":"note with id 3 has been created","level":"info"}
+{"message":"note with id 4 has been created","level":"info"}
