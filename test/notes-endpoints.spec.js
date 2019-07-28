@@ -1,6 +1,6 @@
 const knex=require('knex');
 const app =require('../src/app');
-const {makeMaliciousnote,makenotesArray}=require('./notes-fixtures');
+const {makeMaliciousnote,makeNotesArray}=require('./notes-fixtures');
 
 
 
@@ -38,7 +38,7 @@ describe('notes ENDPOINTS',()=>{
   
 
     context('Given there are notes in the database', () => {
-      const testnotes = makenotesArray();
+      const testnotes = makeNotesArray();
 
       beforeEach('insert notes', () => {
         return db
@@ -86,7 +86,7 @@ describe('notes ENDPOINTS',()=>{
     });
 
     context('Given there are notes in the database', () => {
-      const testnotes = makenotesArray();
+      const testnotes = makeNotesArray();
 
       beforeEach('insert notes', () => {
         return db
@@ -139,7 +139,7 @@ describe('notes ENDPOINTS',()=>{
     });
 
     context('Given there are notes in the database', () => {
-      const testnotes = makenotesArray();
+      const testnotes = makeNotesArray();
 
       beforeEach('insert notes', () => {
         return db
@@ -177,7 +177,7 @@ describe('notes ENDPOINTS',()=>{
   });
 
   context('Given there are notes in the database',()=>{
-    const testnotes=makenotesArray();
+    const testnotes=makeNotesArray();
 
     beforeEach('Insert notes',()=>{
       return db 
@@ -213,7 +213,9 @@ describe('notes ENDPOINTS',()=>{
 
     it('adds a new note to the store', () => {
       const newnote = {
-        note_name:'YAY'
+        note_name:'YAY',
+        description:'stuffs',
+        folder_id:1,
       };
       return supertest(app)
         .post('/api/notes')
@@ -222,6 +224,8 @@ describe('notes ENDPOINTS',()=>{
         .expect(201)
         .expect(res => {
           expect(res.body.note_name).to.eql(newnote.note_name);
+          expect(res.body.description).to.eql(newnote.description);
+          expect(res.body.folder_id).to.eql(newnote.folder_id);
          
           expect(res.body).to.have.property('id');
         })

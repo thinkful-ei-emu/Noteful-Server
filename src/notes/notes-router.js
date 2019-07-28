@@ -11,7 +11,7 @@ const serializeNotes=note=>({
   note_name:xss(note.note_name),
   description:xss(note.description),
   modified_date:note.modified_date,
-  note_id:note.note_id,
+  folder_id:note.folder_id,
 
 
 
@@ -68,8 +68,8 @@ notesRouter
       .then(note=>{
         if(!note){
           logger.error(`note with id ${note_id} not found`);
-          return res.status(400).json({
-            error:{message:'Note not Found'}
+          return res.status(404).json({
+            error:{message:'note not Found'}
           });
         }
         res.note=note;
@@ -78,7 +78,7 @@ notesRouter
       .catch(next);
   })
   .get((req,res)=>{
-    res.json(res.note);
+    res.json(serializeNotes(res.note));
   })
 
   .delete((req,res,next)=>{
