@@ -109,7 +109,7 @@ foldersRouter
         // if(!folder){
         //   return res.status(404).json({error:{message:'Folder not found'}});
         // }
-        console.log(folder);
+        
         res.status(204).end();
       })
       .catch(next);

@@ -21,11 +21,8 @@ describe('Folders ENDPOINTS',()=>{
     return db.destroy();
   
   });
-  
 
-  before('cleanup',()=>{
-    return db.raw('truncate notes,folders RESTART IDENTITY');
-  });
+  
   afterEach('cleanup',()=>{
     return db.raw('truncate notes,folders RESTART IDENTITY');
   });
